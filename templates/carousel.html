@@ -1,0 +1,27 @@
+<div class="container">
+    <div id="carousel" class="carousel slide carousel-fade">
+        <div class="carousel-indicators">
+            {% for movie in movies %}
+            <button type="button" data-bs-target="#carousel" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" aria-current="{% if forloop.first %}true{% endif %}" aria-label="Slide {{ forloop.counter }}"></button>
+            {% endfor %}                      
+        </div>
+        <div class="carousel-inner">
+            {% for movie in movies %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <img src="{{ images }}{{ movie.poster_path }}"class="w-100 custom-img" alt="{{ movie.title }}">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>{{ movie.title }}</h5>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
