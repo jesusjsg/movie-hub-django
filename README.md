@@ -27,3 +27,23 @@ Este proyecto es un portal de películas construido con Python, HTML y Bootstrap
    git clone <URL_DEL_REPOSITORIO>
    cd <NOMBRE_DEL_REPOSITORIO>
 
+2. **Crea un archivo .env**
+
+    ```bash
+    TMDB_API_KEY=YOUR_API_KEY
+    
+3. **Instala las dependencias**
+
+    ```bash
+    pip install -r requirements.txt
+
+### Uso
+
+Ejecuta el servidor mediante el siguiente script
+    
+    ```bash
+    Linux
+    python3 manage.py runserver
+    
+    Windows
+    python/py manage.py runserver
