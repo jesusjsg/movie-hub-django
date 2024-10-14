@@ -40,10 +40,10 @@ Este proyecto es un portal de películas construido con Python, HTML y Bootstrap
 ### Uso
 
 Ejecuta el servidor mediante el siguiente script
-    
+    Linux:
     ```bash
-    Linux
     python3 manage.py runserver
     
-    Windows
+    Windows:
+    ```bash
     python/py manage.py runserver
