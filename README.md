@@ -36,11 +36,3 @@ Este proyecto es un portal de películas construido con Python, HTML y Bootstrap
 
     ```bash
     pip install -r requirements.txt
-
-### Uso
-
-Ejecuta el servidor mediante el siguiente script
-    Linux:
-
-    ```bash
-    python3 manage.py runserver
