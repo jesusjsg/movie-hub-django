@@ -39,3 +39,19 @@ class Services:
             return response['results'][:4]
         else:
             return None
+        
+    def get_genres_movies(self):
+        response = self.get_api(f'{self.BASE_URL}genre/movie/list?api_key={self.api_key}&language={self.language}')
+
+        if response:
+            return response.get('genres')
+        else:
+            return None
+    
+    def get_genres_tv(self):
+        response = self.get_api(f'{self.BASE_URL}genre/tv/list?api_key={self.api_key}&language={self.language}')
+
+        if response:
+            return response.get('genres')
+        else:
+            return None

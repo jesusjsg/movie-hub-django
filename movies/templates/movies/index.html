@@ -5,6 +5,43 @@
     {% include 'nav.html' %}
 </header>
 
+{% include 'sidebar.html' %}
+
+<div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+  <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
+          id="bd-theme"
+          type="button"
+          aria-expanded="false"
+          data-bs-toggle="dropdown"
+          aria-label="Toggle theme (auto)">
+    <i class="bi bi-circle-half my-1 theme-icon-active"></i>
+    <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+    <li>
+      <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+        <i class="bi bi-brightness-high-fill me-2 opacity-50"></i>
+        Light
+        <i class="bi bi-check ms-auto d-none"></i>
+      </button>
+    </li>
+    <li>
+      <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+        <i class="bi bi-moon-fill me-2 opacity-50"></i>
+        Dark
+        <i class="bi bi-check ms-auto d-none"></i>
+      </button>
+    </li>
+    <li>
+      <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
+        <i class="bi bi-circle-half me-2 opacity-50"></i>
+        Auto
+        <i class="bi bi-check ms-auto d-none"></i>
+      </button>
+    </li>
+  </ul>
+</div>
+
 <main class="container">
   <div class="row">
     <div class="col-md-8">
@@ -13,12 +50,51 @@
         <div class="col-md-4 mb-4">
           <div class="card mb-4 border border-0" style="width: 14rem;">
             <img src="{{ images }}{{ movie.poster_path }}" class="card-img-top" alt="{{ movie.title }}">
+            <div class="card-body">
+              <h6 class="card-title text-center">{{ movie.title }}</h6>
+              <span class="badge rounded-pill text-bg-primary">{{ movie.vote_average | floatformat:1 }}</span>
+            </div>
           </div>
         </div>
         {% endfor %}
       </div>
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          {% if page_obj.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?page=1" aria-label="First">
+                <span aria-hidden="true">&laquo;&laquo;</span>
+              </a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+          {% endif %}
+
+          {% for num in page_obj.paginator.page_range %}
+            <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+              <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+            </li>
+          {% endfor %}
+
+          {% if page_obj.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+                <span aria-hidden="true">&raquo;&raquo;</span>
+              </a>
+            </li>
+          {% endif %}
+        </ul>
+      </nav>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 mt-4">
       <div class="position-sticky" style="top: 2rem;">
         <div class="col-md-4">
           <h4>Lastest movies</h4>
